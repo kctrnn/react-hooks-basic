@@ -5,6 +5,7 @@ import axios from 'axios';
 // import TodoForm from './components/TodoForm';
 // import TodoList from './components/TodoList';
 import PostList from './components/PostList';
+import Pagination from './components/Pagination';
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -44,22 +45,53 @@ function App() {
   // postlist
   const [postList, setPostList] = useState([]);
 
+  // useEffect(() => {
+  //   async function getPostList() {
+  //     try {
+  //       const requestUrl =
+  //         'http://js-post-api.herokuapp.com/api/posts?_limit=10&_page=1';
+  //       const response = await axios.get(requestUrl);
+
+  //       const { data } = response.data;
+  //       setPostList(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+
+  //   getPostList();
+  // }, []);
+
+  const [pagination, setPagination] = useState({});
+
+  const [filters, setFilters] = useState({
+    _page: 1,
+    _limit: 10,
+  });
+
   useEffect(() => {
     async function getPostList() {
       try {
-        const requestUrl =
-          'http://js-post-api.herokuapp.com/api/posts?_limit=10&_page=1';
+        const requestUrl = `http://js-post-api.herokuapp.com/api/posts?_limit=${filters._limit}&_page=${filters._page}`;
         const response = await axios.get(requestUrl);
 
-        const { data } = response.data;
+        const { data, pagination } = response.data;
         setPostList(data);
+        setPagination(pagination); // 1 10 50
       } catch (error) {
         console.log(error);
       }
     }
 
     getPostList();
-  }, []);
+  }, [filters]);
+
+  function onPageChange(newPage) {
+    setFilters({
+      ...filters,
+      _page: newPage,
+    });
+  }
 
   return (
     <div className='App'>
@@ -71,6 +103,7 @@ function App() {
       <TodoList todos={todoList} onTodoClick={handleTodoClick} /> */}
 
       <PostList posts={postList} />
+      <Pagination pagination={pagination} onPageChange={onPageChange} />
     </div>
   );
 }
