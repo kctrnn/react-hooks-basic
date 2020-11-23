@@ -22,6 +22,8 @@ function Pagination({ pagination, onPageChange }) {
 
   return (
     <div className='pagination'>
+      <h3>Number page: {_page}</h3>
+
       <button
         disabled={_page === 1}
         onClick={() => handlePageChange(_page - 1)}
