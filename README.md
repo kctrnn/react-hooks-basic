@@ -106,3 +106,5 @@ function App() {
 
 1. PostList - Call API with useEffect hooks
 2. Pagination
+3. Search with debounce
+4. Clock with cleanup
