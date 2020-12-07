@@ -8,42 +8,42 @@ import queryString from 'query-string';
 import PostList from './components/PostList';
 import Pagination from './components/Pagination';
 import PostFiltersForm from './components/PostFiltersForm';
-import Clock from './components/Clock';
+// import Clock from './components/Clock';
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    { id: 1, title: 'Hanhiu' },
-    { id: 2, title: 'Kim Chan' },
-    { id: 3, title: 'Hoi An' },
-  ]);
+  // const [todoList, setTodoList] = useState([
+  //   { id: 1, title: 'Hanhiu' },
+  //   { id: 2, title: 'Kim Chan' },
+  //   { id: 3, title: 'Hoi An' },
+  // ]);
 
-  // todolist
-  function handleTodoClick(todo) {
-    const index = todoList.findIndex((x) => x.id === todo.id);
-    console.log(index);
+  // // todolist
+  // function handleTodoClick(todo) {
+  //   const index = todoList.findIndex((x) => x.id === todo.id);
+  //   console.log(index);
 
-    const newTodoList = [
-      ...todoList.slice(0, index),
-      ...todoList.slice(index + 1),
-    ];
+  //   const newTodoList = [
+  //     ...todoList.slice(0, index),
+  //     ...todoList.slice(index + 1),
+  //   ];
 
-    // Solution 2
-    // const newTodoList = [...todoList];
-    // newTodoList.splice(index, 1);
+  //   // Solution 2
+  //   // const newTodoList = [...todoList];
+  //   // newTodoList.splice(index, 1);
 
-    setTodoList(newTodoList);
-  }
+  //   setTodoList(newTodoList);
+  // }
 
-  // todoform
-  function handleTodoFormSubmit(formValues) {
-    const newTodo = {
-      id: todoList.length + 1,
-      ...formValues,
-    };
+  // // todoform
+  // function handleTodoFormSubmit(formValues) {
+  //   const newTodo = {
+  //     id: todoList.length + 1,
+  //     ...formValues,
+  //   };
 
-    const newTodoList = [...todoList, newTodo];
-    setTodoList(newTodoList);
-  }
+  //   const newTodoList = [...todoList, newTodo];
+  //   setTodoList(newTodoList);
+  // }
 
   // postlist
   const [postList, setPostList] = useState([]);
@@ -117,11 +117,11 @@ function App() {
       {/* <TodoForm onSubmit={handleTodoFormSubmit} />
       <TodoList todos={todoList} onTodoClick={handleTodoClick} /> */}
 
-      {/* <PostFiltersForm onSubmit={handleFiltersChange} />
+      <PostFiltersForm onSubmit={handleFiltersChange} />
       <PostList posts={postList} />
-      <Pagination pagination={pagination} onPageChange={onPageChange} /> */}
+      <Pagination pagination={pagination} onPageChange={onPageChange} />
 
-      <Clock />
+      {/* <Clock /> */}
     </div>
   );
 }
